@@ -7,9 +7,9 @@
 #             echo Working directory is dirty >&2; \
 #         fi
 
-DRAFTS =	draft-singh-xrblock-independent-burst-gap-discard.txt \
-          draft-singh-xrblock-independent-burst-gap-discard.html \
-					draft-singh-xrblock-independent-burst-gap-discard.pdf
+DRAFTS =	draft-ietf-xrblock-independent-burst-gap-discard.txt \
+          draft-ietf-xrblock-independent-burst-gap-discard.html \
+					draft-ietf-xrblock-independent-burst-gap-discard.pdf
 CMDSEP = ;
 #VERSION = 00
 
