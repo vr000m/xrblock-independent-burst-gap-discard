@@ -26,7 +26,7 @@
 ]>
 
 
-<rfc category="std" docName="draft-ietf-xrblock-independent-burst-gap-discard-00" ipr="trust200902">
+<rfc category="std" docName="draft-ietf-xrblock-independent-burst-gap-discard-01" ipr="trust200902">
 
   <?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?>
 
@@ -50,7 +50,7 @@
           <code>00100</code>
           <country>Finland</country>
         </postal>
-        <email>varun@callstats.io</email>
+          <email>varun.singh@iki.fi</email>
         <uri>http://www.callstats.io/</uri>
       </address>
     </author>
@@ -98,7 +98,7 @@
       </address>
     </author>
 
-    <date year="2015" />
+    <date year="2016" />
 
     <area>Real-time Applications and Infrastructure Area</area>
     <workgroup>Audio/Video Transport Working Group</workgroup>
@@ -116,11 +116,10 @@
     <section anchor="intro" title="Introduction">
       <section title="Burst-Gap Discard Metrics Block">
         <t>This document defines a new block type that extends the metrics defined
-        in <xref target="RFC7003"></xref>, the metrics in this report block can be used
-        in a range of RTP applications.
-        The new block type reports the proportion of packets discarded by the jitter
-        buffer at the receiver in a burst and number of packets discarded depends
-        on the de-jitter buffer algorithm implemented by the endpoint.</t>
+        in <xref target="RFC7003"></xref>. The new block type reports the proportion
+        of packets discarded in a burst by the dejitter buffer at the receiver.
+        The number of packets discarded depends on the dejitter buffer algorithm
+        implemented by the endpoint.</t>
 
         <t>The new report block defined in this document is different from
         the one defined in <xref target="RFC7003"></xref>. The metrics in
@@ -140,20 +139,20 @@
         <t>This block provides information on transient network issues. Burst/gap
         metrics are typically used in cumulative reports; however, they may also
         be used in interval reports (see the Interval Metric flag in
-        Section 3.2). The variation in the number of packet discard in a burst
+        Section 3.2). The variation in the number of packet discards in a burst
         affects the user experience. Based on the metrics reported in the block,
-        the sending endpoint may change the packetisation interval, vary the bitrate, etc.
+        the sending endpoint may change the packetization interval, vary the bitrate, etc.
         The report may additionally be used for diagnostics <xref target="RFC6792"/>.
         The metric belongs to the class of transport-related end-system
         metrics defined in <xref target="RFC6792"></xref>.</t>
 
         <t>The definitions of "burst", "gap", "loss", and "discard" are consistent with
-        the definitions in <xref target="RFC3611"></xref>. To accommodate the
-        range of jitter buffer algorithms and packet discard logic that may be
+        the definitions in <xref target="RFC3611"></xref>. To accommodate a
+        range of dejitter buffer algorithms and packet discard logic that may be
         used by implementors, the method used to distinguish between bursts
         and gaps shall use an equivalent method to that defined in Section
         4.7.2 of <xref target="RFC3611"></xref>. Note that reporting the
-        specific jitter buffer algorithms and/or packet discard logic is out
+        specific dejitter buffer algorithm and/or the packet discard logic is out
         of the scope of this document.</t>
       </section>
 
@@ -177,7 +176,7 @@
 
       <section title="Applicability">
         <t>These metrics are applicable to a range of RTP applications that
-        contain de-jitter buffers <xref target="RFC5481"></xref> at the
+        contain dejitter buffers <xref target="RFC5481"></xref> at the
         receiving end to smooth variation in packet-arrival time and don't
         use stream repair means, e.g., Forward Error Correction (FEC) <xref
         target="I-D.ietf-payload-flexible-fec-scheme"></xref> and/or retransmission <xref
@@ -225,7 +224,7 @@
             enough to cause noticeable quality degradation (generally over 5
             percent discard rate), and gaps, which are periods during which
             discarded packets are infrequent and hence quality is generally
-            acceptable. </t>
+            acceptable. <xref target="RFC3611"/> RECOMMENDS a Gmin value of 16.</t>
           </list></t>
 
     </section>
@@ -249,21 +248,22 @@
         <t>The structure of the Burst/Gap Discard Metrics Block is as follows.<figure
             title="Figure 1: Report Block Structure">
             <artwork>
-     0                   1                   2                   3
-     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |    BT=IBGD    | I |   resv    |          block length         |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                        SSRC of Source                         |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |   Threshold   |         Sum of Burst Durations (ms)           |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |          Packets Discarded in Bursts          |    Number of  |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |    Bursts     |           Total Packets Expected in Bursts    |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                        Discard Count                          |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    0                   1                   2                   3
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |    BT=IBGD    | I |   resv    |      Block Length = 5         |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                        SSRC of Source                         |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |   Threshold   |         Sum of Burst Durations (ms)           |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |          Packets Discarded in Bursts          |    Number of  |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |    Bursts     |           Total Packets Expected in Bursts    |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                        Discard Count                          |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
 </artwork>
           </figure></t>
       </section>
@@ -345,7 +345,7 @@
 
             <t hangText="Total Packets Expected in Bursts: 24 bits"><vspace
             blankLines="1" />The total number of packets expected during
-            discarded bursts (that is, the sum of received packets and lost
+            the discard bursts (that is, the sum of received packets and lost
             packets). The metric is defined in <xref target="RFC7003"></xref>.
             </t>
 
@@ -367,11 +367,11 @@
         for example:
         <list style="symbols">
             <t>The average discarded burst size, which can be calculated
-            by dividing the metric "Packets Discarded in Bursts" with the
+            by dividing the metric "Packets Discarded in Bursts" by the
             "Number of Bursts".</t>
 
             <t>The average burst duration, which can be calculated
-            by dividing the metric "Sum of Burst Durations (ms)" with
+            by dividing the metric "Sum of Burst Durations (ms)" by
             the "Number of bursts".</t>
           </list>
         </t>
@@ -454,7 +454,7 @@ xr-ind-bgd-block = "ind-burst-gap-discard"
 The contact information for the registrations is:
 
 <figure><artwork>
-   RAI Area Directors &lt;rai-ads@tools.ietf.org&gt;
+   ART Area Directors &lt;art-ads@tools.ietf.org&gt;
 </artwork></figure>
 </t>
    </section>
@@ -473,7 +473,12 @@ The contact information for the registrations is:
     </section>
 
     <section title="Acknowledgments">
-      <t>The authors acknowledge the reviews and feedback provided by various people.</t>
+      <t> The authors would like to thank
+          Paul Kyzivat,
+          Jan Novak,
+          Dan Romascanu
+          for providing valuable feedback on earlier versions of this draft.
+      </t>
     </section>
   </middle>
 
@@ -487,6 +492,7 @@ The contact information for the registrations is:
 &rfc5234;
 &rfc5725;
 &rfc6776;
+&rfc7003;
     </references>
 
     <references title="Informative References">
@@ -498,7 +504,6 @@ The contact information for the registrations is:
 &rfc5481;
 &rfc6958;
 &rfc7002;
-&rfc7003;
 &__reference.flexible-fec;
 
     </references>
@@ -509,7 +514,7 @@ The contact information for the registrations is:
           <t>Threshold Metric
 
           <list style="symbols">
-              <t>Defined in Appenix A.a of <xref target="RFC7003"/>.</t>
+              <t>Defined in Appendix A.a of <xref target="RFC7003"/>.</t>
             </list></t>
 
            <t>Sum of burst durations (ms)
@@ -539,7 +544,7 @@ The contact information for the registrations is:
 
           <t>Packets Discarded in Bursts Metric
             <list style="symbols">
-              <t>Defined in Appenix A.b of <xref target="RFC7003"/>.</t>
+              <t>Defined in Appendix A.b of <xref target="RFC7003"/>.</t>
             </list></t>
 
           <t>Number of bursts
@@ -569,12 +574,12 @@ The contact information for the registrations is:
 
           <t>Total Packets Expected in Bursts Metric
             <list style="symbols">
-              <t>Defined in Appenix A.c of <xref target="RFC7003"/>.</t>
+              <t>Defined in Appendix A.c of <xref target="RFC7003"/>.</t>
             </list></t>
 
           <t>Discard Count
             <list style="symbols">
-              <t>Defined in Appenix A.a of <xref target="RFC7002"/>.</t>
+              <t>Defined in Appendix A.a of <xref target="RFC7002"/>.</t>
             </list></t>
 
         </list></t>
