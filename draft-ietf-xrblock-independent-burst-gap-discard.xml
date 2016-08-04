@@ -8,6 +8,8 @@
 <!ENTITY rfc3611 PUBLIC "" "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3611.xml">
 <!ENTITY rfc4566 PUBLIC "" "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4566.xml">
 <!ENTITY rfc3550 PUBLIC "" "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3550.xml">
+<!ENTITY rfc3711 PUBLIC "" "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3711.xml">
+<!ENTITY rfc5124 PUBLIC "" "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5124.xml">
 <!ENTITY rfc5725 PUBLIC "" "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5725.xml">
 <!ENTITY rfc6776 PUBLIC "" "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6776.xml">
 <!ENTITY rfc6709 PUBLIC "" "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6709.xml">
@@ -22,11 +24,11 @@
 <!ENTITY rfc7002 PUBLIC "" "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7002.xml">
 <!ENTITY rfc7003 PUBLIC "" "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7003.xml">
 <!ENTITY rfc7004 PUBLIC "" "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7004.xml">
-<!ENTITY __reference.flexible-fec SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.draft-ietf-payload-flexible-fec-scheme-01.xml">
+<!ENTITY __reference.flexible-fec SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.draft-ietf-payload-flexible-fec-scheme-02.xml">
 ]>
 
 
-<rfc category="std" docName="draft-ietf-xrblock-independent-burst-gap-discard-01" ipr="trust200902">
+<rfc category="std" docName="draft-ietf-xrblock-independent-burst-gap-discard-02" ipr="trust200902">
 
   <?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?>
 
@@ -98,7 +100,7 @@
       </address>
     </author>
 
-    <date year="2016" />
+    <date month="June" day="27" year="2016" />
 
     <area>Real-time Applications and Infrastructure Area</area>
     <workgroup>Audio/Video Transport Working Group</workgroup>
@@ -150,7 +152,7 @@
         the definitions in <xref target="RFC3611"></xref>. To accommodate a
         range of dejitter buffer algorithms and packet discard logic that may be
         used by implementors, the method used to distinguish between bursts
-        and gaps shall use an equivalent method to that defined in Section
+        and gaps use an equivalent method to that defined in Section
         4.7.2 of <xref target="RFC3611"></xref>. Note that reporting the
         specific dejitter buffer algorithm and/or the packet discard logic is out
         of the scope of this document.</t>
@@ -390,8 +392,8 @@
       which are periods during which discarded packets are infrequent and
       hence call quality is generally acceptable.</t>
 
-      <t>If voice activity detection is used, the burst and gap duration shall
-      be determined as if silence packets had been sent, i.e., a period of
+      <t>If voice activity detection is used, the burst and gap duration is
+      determined as if silence packets had been sent, i.e., a period of
       silence in excess of Gmin packets will terminate a burst condition.</t>
 
       <t>The recommended value for the threshold Gmin in <xref
@@ -454,18 +456,31 @@ xr-ind-bgd-block = "ind-burst-gap-discard"
 The contact information for the registrations is:
 
 <figure><artwork>
-   ART Area Directors &lt;art-ads@tools.ietf.org&gt;
+   ART Area Directors &lt;art-ads@ietf.org&gt;
 </artwork></figure>
 </t>
    </section>
     </section>
 
     <section title="Security Considerations">
-      <t>It is believed that this RTCP XR block introduces no
-      new security considerations beyond those described in <xref
-      target="RFC3611"></xref>. This block does not provide per-packet
+      <t>This block does not provide per-packet
       statistics, so the risk to confidentiality documented in Section 7,
-      paragraph 3 of <xref target="RFC3611"></xref> does not apply.</t>
+      paragraph 3 of <xref target="RFC3611"></xref> does not apply. However 
+	  the gap indicated within this block could be used to detect the timing 
+	  of other events on the path between the sender and receiver. For example, 
+	  a competing multimedia stream might cause a discard burst for the duration 
+	  of the stream, allowing the receiver of this block to know when the competing 
+	  stream was active. This risk is not a significant threat since the only 
+	  information leaked is the timing of the discard, not the cause.</t>
+	  
+	  <t>Where this is a concern, the implementation should apply encryption 
+	  and authentication to this report block. For example, this can be achieved 
+	  by using the Audio-Visual Profile with Feedback (AVPF) profile together 
+	  with the Secure RTP profile, as defined in <xref target="RFC3711"></xref>; 
+	  an appropriate combination of those two profiles ("SAVPF") is specified in <xref
+      target="RFC5124"></xref>. Besides this, it is believed that this RTCP XR block 
+	  introduces no new security considerations beyond those described in 
+	  <xref target="RFC3611"></xref>.</t>
     </section>
 
     <section title="Contributors">
@@ -489,6 +504,8 @@ The contact information for the registrations is:
 &rfc3611;
 &rfc4566;
 &rfc3550;
+&rfc3711;
+&rfc5124;
 &rfc5234;
 &rfc5725;
 &rfc6776;
