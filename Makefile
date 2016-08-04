@@ -17,15 +17,12 @@ all: $(DRAFTS)
 
 %.txt: %.xml
 	@echo "generate $< -> $@"
-	@echo xml2rfc $< -f $@ --text
-	@xml2rfc $< -f $@ --text
-
-    # @egrep -ns --colour "\\bmust|required|shall|should|recommended|may|optional\\b" $< || true
+	@xml2rfc $< -o $@ 
+	@egrep -ns --colour "\\bmust|required|shall|should|recommended|may|optional\\b" $< || true
 
 %.html: %.xml
 	@echo "generate $< -> $@"
-	@echo xml2rfc $< -f $@ --html
-	@xml2rfc $< -f $@ --html
+	@xml2rfc $< -o $@ --html
 
 %.pdf: %.txt
 	@echo "enscript $< -> $@"
