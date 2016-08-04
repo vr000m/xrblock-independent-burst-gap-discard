@@ -28,7 +28,7 @@
 ]>
 
 
-<rfc category="std" docName="draft-ietf-xrblock-independent-burst-gap-discard-02" ipr="trust200902">
+<rfc category="std" docName="draft-ietf-xrblock-independent-burst-gap-discard-03" ipr="trust200902">
 
   <?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?>
 
@@ -100,7 +100,7 @@
       </address>
     </author>
 
-    <date month="June" day="27" year="2016" />
+    <date month="August" day="4" year="2016" />
 
     <area>Real-time Applications and Infrastructure Area</area>
     <workgroup>Audio/Video Transport Working Group</workgroup>
