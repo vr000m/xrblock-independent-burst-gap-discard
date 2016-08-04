@@ -19,7 +19,6 @@
 <!ENTITY rfc4588 PUBLIC "" "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4588.xml">
 <!ENTITY rfc5234 PUBLIC ""
 "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5234.xml">
-<!ENTITY rfc5481 PUBLIC "" "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5481.xml">
 <!ENTITY rfc6958 PUBLIC "" "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6958.xml">
 <!ENTITY rfc7002 PUBLIC "" "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7002.xml">
 <!ENTITY rfc7003 PUBLIC "" "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7003.xml">
@@ -178,8 +177,8 @@
 
       <section title="Applicability">
         <t>These metrics are applicable to a range of RTP applications that
-        contain dejitter buffers <xref target="RFC5481"></xref> at the
-        receiving end to smooth variation in packet-arrival time and don't
+        contain de-jitter buffers at the
+        receiver to smooth variation in packet-arrival time and don't
         use stream repair means, e.g., Forward Error Correction (FEC) <xref
         target="I-D.ietf-payload-flexible-fec-scheme"></xref> and/or retransmission <xref
         target="RFC4588"></xref>.</t>
@@ -489,6 +488,7 @@ The contact information for the registrations is:
       <t> The authors would like to thank
           Ben Campbell,
           Paul Kyzivat,
+          Shucheng LIU,
           Jan Novak, 
           and
           Dan Romascanu
@@ -518,7 +518,6 @@ The contact information for the registrations is:
 &rfc6792;
 &rfc6390;
 &rfc4588;
-&rfc5481;
 &rfc6958;
 &rfc7002;
 &__reference.flexible-fec;
