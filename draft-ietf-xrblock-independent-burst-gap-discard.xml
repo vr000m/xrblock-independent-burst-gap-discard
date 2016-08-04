@@ -126,8 +126,9 @@
         the one defined in <xref target="RFC7003"></xref>. The metrics in
         <xref target="RFC7003"></xref> depends on the metrics in the
         burst-gap loss metric defined in <xref target="RFC6958"></xref>.
-        Consequently, an endpoint using <xref target="RFC7003"></xref> needs to
-        report it along with <xref target="RFC6958"></xref> for it to be useful.
+        Consequently, an endpoint that sends a Burst/Gap Discard Metrics Block 
+        <xref target="RFC7003"></xref> also needs to send a Burst/Gap Loss 
+        Metrics Block <xref target="RFC6958"></xref>.
         The combined usage is useful when an endpoint observes correlated packet
         losses and discard. However, when the burst of packet losses and discards
         do not occur simultaneously, the application may prefer a concise report
@@ -487,6 +488,7 @@ The contact information for the registrations is:
     <section title="Acknowledgments">
       <t> The authors would like to thank
           Ben Campbell,
+          Stephen Farrell,
           Paul Kyzivat,
           Shucheng LIU,
           Jan Novak, 
