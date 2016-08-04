@@ -127,7 +127,7 @@
         the one defined in <xref target="RFC7003"></xref>. The metrics in
         <xref target="RFC7003"></xref> depends on the metrics in the
         burst-gap loss metric defined in <xref target="RFC6958"></xref>.
-        Consequently, an endpoint using <xref target="RFC7003"></xref> MUST
+        Consequently, an endpoint using <xref target="RFC7003"></xref> needs to
         report it along with <xref target="RFC6958"></xref> for it to be useful.
         The combined usage is useful when an endpoint observes correlated packet
         losses and discard. However, when the burst of packet losses and discards
@@ -226,7 +226,7 @@
             enough to cause noticeable quality degradation (generally over 5
             percent discard rate), and gaps, which are periods during which
             discarded packets are infrequent and hence quality is generally
-            acceptable. <xref target="RFC3611"/> RECOMMENDS a Gmin value of 16.</t>
+            acceptable.</t>
           </list></t>
 
     </section>
@@ -291,8 +291,6 @@
                 the accumulation period characteristic of cumulative
                 measurements.</t>
 
-                <t>I=01: Sampled Value - the reported value is a sampled
-                instantaneous value.</t>
               </list>In this document, burst/gap discard metrics can only be
             measured over definite intervals and cannot be sampled. Also, the
             value I=00 is reserved for future use. Senders MUST NOT use the
@@ -405,7 +403,7 @@
     <section title="SDP Signaling">
       <t><xref target="RFC3611"/> defines the use of SDP (Session Description Protocol) <xref
       target="RFC4566"></xref> for signaling the use of XR blocks. XR blocks
-      MAY be used without prior signaling.</t>
+      can be used without prior signaling.</t>
 
       <section title="SDP rtcp-xr Attribute Extension">
         <t>This section augments the SDP <xref target="RFC4566"></xref>
@@ -489,8 +487,10 @@ The contact information for the registrations is:
 
     <section title="Acknowledgments">
       <t> The authors would like to thank
+          Ben Campbell,
           Paul Kyzivat,
-          Jan Novak,
+          Jan Novak, 
+          and
           Dan Romascanu
           for providing valuable feedback on earlier versions of this draft.
       </t>
