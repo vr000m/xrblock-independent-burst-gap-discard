@@ -12,18 +12,18 @@ ISSN: 2070-1721                                    University of Glasgow
                                                                 Telchemy
                                                                 R. Huang
                                                                   Huawei
-                                                            October 2016
+                                                           November 2016
 
 
          RTP Control Protocol (RTCP) Extended Report (XR) Block
-         for Independent Reporting of Burst/Gap Discard Metric
+         for Independent Reporting of Burst/Gap Discard Metrics
 
 Abstract
 
    This document defines an RTP Control Protocol (RTCP) Extended Report
-   (XR) block that allows the reporting of burst and gap discard metrics
-   independently of the burst and gap loss metrics for use in a range of
-   RTP applications.
+   (XR) block that allows the reporting of burst/gap discard metrics
+   independently of the burst/gap loss metrics for use in a range of RTP
+   applications.
 
 Status of This Memo
 
@@ -57,7 +57,7 @@ Copyright Notice
 
 Singh, et al.                Standards Track                    [Page 1]
 
-RFC 8015                RTCP XR Burst/Gap Discard           October 2016
+RFC 8015                RTCP XR Burst/Gap Discard          November 2016
 
 
    the Trust Legal Provisions and are provided without warranty as
@@ -66,7 +66,7 @@ RFC 8015                RTCP XR Burst/Gap Discard           October 2016
 Table of Contents
 
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
-     1.1.  Burst-Gap Discard Metrics Block . . . . . . . . . . . . .   2
+     1.1.  Independent Burst/Gap Discard Metrics Block . . . . . . .   2
      1.2.  RTCP and RTCP Extended Reports  . . . . . . . . . . . . .   3
      1.3.  Performance Metrics Framework . . . . . . . . . . . . . .   3
      1.4.  Applicability . . . . . . . . . . . . . . . . . . . . . .   4
@@ -95,7 +95,7 @@ Table of Contents
 
 1.  Introduction
 
-1.1.  Burst-Gap Discard Metrics Block
+1.1.  Independent Burst/Gap Discard Metrics Block
 
    This document defines a new block type that extends the metrics
    defined in [RFC7003].  The new block type reports the proportion of
@@ -105,7 +105,7 @@ Table of Contents
 
    The new report block defined in this document is different from the
    one defined in [RFC7003].  The metrics in [RFC7003] depend on the
-   metrics in the burst-gap loss metric defined in [RFC6958].
+   metrics in the burst/gap loss metric defined in [RFC6958].
    Consequently, an endpoint that sends a Burst/Gap Discard Metrics
    Block [RFC7003] also needs to send a Burst/Gap Loss Metrics Block
 
@@ -113,14 +113,14 @@ Table of Contents
 
 Singh, et al.                Standards Track                    [Page 2]
 
-RFC 8015                RTCP XR Burst/Gap Discard           October 2016
+RFC 8015                RTCP XR Burst/Gap Discard          November 2016
 
 
    [RFC6958].  The combined usage is useful when an endpoint observes
    correlated packet losses and discard.  However, when the burst of
    packet losses and discards do not occur simultaneously, the
    application could prefer to send a concise report block that just
-   reports the burst-gap of discarded packets.  The report block in this
+   reports the burst/gap of discarded packets.  The report block in this
    document provides the complete information and does not require
    additional report blocks.  That is, this block reports the total
    number of packets discarded, the total burst duration, and the total
@@ -169,7 +169,7 @@ RFC 8015                RTCP XR Burst/Gap Discard           October 2016
 
 Singh, et al.                Standards Track                    [Page 3]
 
-RFC 8015                RTCP XR Burst/Gap Discard           October 2016
+RFC 8015                RTCP XR Burst/Gap Discard          November 2016
 
 
 1.4.  Applicability
@@ -225,7 +225,7 @@ RFC 8015                RTCP XR Burst/Gap Discard           October 2016
 
 Singh, et al.                Standards Track                    [Page 4]
 
-RFC 8015                RTCP XR Burst/Gap Discard           October 2016
+RFC 8015                RTCP XR Burst/Gap Discard          November 2016
 
 
 3.  Independent Burst/Gap Discard Metrics Block
@@ -281,7 +281,7 @@ RFC 8015                RTCP XR Burst/Gap Discard           October 2016
 
 Singh, et al.                Standards Track                    [Page 5]
 
-RFC 8015                RTCP XR Burst/Gap Discard           October 2016
+RFC 8015                RTCP XR Burst/Gap Discard          November 2016
 
 
       This field is used to indicate whether the burst/gap discard
@@ -337,7 +337,7 @@ RFC 8015                RTCP XR Burst/Gap Discard           October 2016
 
 Singh, et al.                Standards Track                    [Page 6]
 
-RFC 8015                RTCP XR Burst/Gap Discard           October 2016
+RFC 8015                RTCP XR Burst/Gap Discard          November 2016
 
 
       an over-range measurement.  If the measurement is unavailable, the
@@ -393,7 +393,7 @@ RFC 8015                RTCP XR Burst/Gap Discard           October 2016
 
 Singh, et al.                Standards Track                    [Page 7]
 
-RFC 8015                RTCP XR Burst/Gap Discard           October 2016
+RFC 8015                RTCP XR Burst/Gap Discard          November 2016
 
 
 4.  Considerations for Voice-over-IP Applications
@@ -409,7 +409,7 @@ RFC 8015                RTCP XR Burst/Gap Discard           October 2016
    gaps, which are periods during which discarded packets are
    infrequent, and hence call quality is generally acceptable.
 
-   If voice activity detection is used, the burst and gap duration is
+   If voice activity detection is used, the burst/gap duration is
    determined as if silence packets had been sent, i.e., a period of
    silence in excess of Gmin packets will terminate a burst condition.
 
@@ -449,7 +449,7 @@ RFC 8015                RTCP XR Burst/Gap Discard           October 2016
 
 Singh, et al.                Standards Track                    [Page 8]
 
-RFC 8015                RTCP XR Burst/Gap Discard           October 2016
+RFC 8015                RTCP XR Burst/Gap Discard          November 2016
 
 
 6.  IANA Considerations
@@ -505,7 +505,7 @@ RFC 8015                RTCP XR Burst/Gap Discard           October 2016
 
 Singh, et al.                Standards Track                    [Page 9]
 
-RFC 8015                RTCP XR Burst/Gap Discard           October 2016
+RFC 8015                RTCP XR Burst/Gap Discard          November 2016
 
 
 8.  References
@@ -561,7 +561,7 @@ RFC 8015                RTCP XR Burst/Gap Discard           October 2016
 
 Singh, et al.                Standards Track                   [Page 10]
 
-RFC 8015                RTCP XR Burst/Gap Discard           October 2016
+RFC 8015                RTCP XR Burst/Gap Discard          November 2016
 
 
    [RFC7003]  Clark, A., Huang, R., and Q. Wu, Ed., "RTP Control
@@ -617,7 +617,7 @@ RFC 8015                RTCP XR Burst/Gap Discard           October 2016
 
 Singh, et al.                Standards Track                   [Page 11]
 
-RFC 8015                RTCP XR Burst/Gap Discard           October 2016
+RFC 8015                RTCP XR Burst/Gap Discard          November 2016
 
 
 Appendix A.  Metrics Represented Using the Template from RFC 6390
@@ -673,7 +673,7 @@ Appendix A.  Metrics Represented Using the Template from RFC 6390
 
 Singh, et al.                Standards Track                   [Page 12]
 
-RFC 8015                RTCP XR Burst/Gap Discard           October 2016
+RFC 8015                RTCP XR Burst/Gap Discard          November 2016
 
 
        *  Measurement Point(s) with Potential Measurement Domain: See
@@ -729,7 +729,7 @@ Authors' Addresses
 
 Singh, et al.                Standards Track                   [Page 13]
 
-RFC 8015                RTCP XR Burst/Gap Discard           October 2016
+RFC 8015                RTCP XR Burst/Gap Discard          November 2016
 
 
    Alan Clark
